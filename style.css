@@ -1,31 +1,31 @@
-.game{
-    /* display: flex; */
-    padding: 50px;
+.game {
+  display: flex;
+  justify-content: center;
+  padding: 50px;
 }
 
-.board{
-    width: 100%;
-    height: 500px;
-    border: 2px dotted black;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
+.board {
+  width: clamp(100px, 100%, 500px);
+  aspect-ratio: 1;
+  border: 2px dotted black;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
 }
 
-.row{
-    flex: 1;
-    border: 5px solid grey;
-    display: flex;
+.row {
+  flex: 1;
+  border: 5px solid grey;
+  display: flex;
 }
 
-.col-box{
-    flex: 1;
-    border: 5px solid pink;
-    text-align: center;
+.col-box {
+  flex: 1;
+  border: 5px solid pink;
+  text-align: center;
 }
 
-.circ{
-    object-fit: contain;
-    width: 100%;
+.circ {
+  object-fit: contain;
+  width: 100%;
 }
-
