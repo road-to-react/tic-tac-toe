@@ -13,12 +13,8 @@
     <div class="game">
         <div class="board" id="gameBoard">
             <div class="row">
-                <div class="col-box" id="box1">
-                    <img class="symbol" src="images/c.svg" alt="circle">
-                </div>
-                <div class="col-box" id="box2">
-                    <img class="symbol" src="images/t.svg" alt="tick">
-                </div>
+                <div class="col-box" id="box1"></div>
+                <div class="col-box" id="box2"></div>
                 <div class="col-box" id="box3"></div>
             </div>
             <div class="row">
@@ -36,23 +32,25 @@
     <script>
         var turn = 1;
         var id = "hello";
-        const img = document.createElement("img");
-        img.src = "images/t.svg";
-        img.className = "symbol";
 
-        document.addEventListener("click", clickFunction);
-        function clickFunction(e) {
-              
-            
-        }
-
-
-        document.getElementById("gameBoard").onclick =  function (e) {
-            console.log(e.target.id);
-            id = e.target.id;
-            document.getElementById(id).innerHTML = "";
-            document.getElementById(id).appendChild(img);  
-        }
+        Array.from(document.getElementsByClassName("col-box")).forEach((box) => {
+            box.addEventListener("click", function (e) {
+                const img = document.createElement("img");
+                img.className = "symbol";
+                if (turn % 2 == 0) {
+                    img.src = "images/t.svg";
+                    console.log("tick");
+                } else {
+                    img.src = "images/c.svg";
+                    console.log("circ");
+                }
+                const hasChild = box.hasChildNodes();
+                if (!hasChild) {
+                    box.appendChild(img);
+                    turn++;
+                }
+            });
+        });
 
     </script>
 </body>
