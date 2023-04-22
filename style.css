@@ -22,7 +22,9 @@
 .col-box {
   flex: 1;
   border-right: 10px solid black;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* #box3,#box6,#box9 */
@@ -36,5 +38,5 @@
 
 .symbol {
   object-fit: contain;
-  width: 95%;
+  width: 50%;
 }
