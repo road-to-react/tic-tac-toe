@@ -11,13 +11,13 @@
 
 <body>
     <div class="game">
-        <div class="board">
+        <div class="board" id="gameBoard">
             <div class="row">
                 <div class="col-box" id="box1">
-                    <img class="marks" src="images/c.svg" alt="circle">
+                    <img class="symbol" src="images/c.svg" alt="circle">
                 </div>
                 <div class="col-box" id="box2">
-                    <img class="marks" src="images/t.svg" alt="circle">
+                    <img class="symbol" src="images/t.svg" alt="tick">
                 </div>
                 <div class="col-box" id="box3"></div>
             </div>
@@ -33,7 +33,28 @@
             </div>
         </div>
     </div>
-    <script src="play.js"></script>
+    <script>
+        var turn = 1;
+        var id = "hello";
+        const img = document.createElement("img");
+        img.src = "images/t.svg";
+        img.className = "symbol";
+
+        document.addEventListener("click", clickFunction);
+        function clickFunction(e) {
+              
+            
+        }
+
+
+        document.getElementById("gameBoard").onclick =  function (e) {
+            console.log(e.target.id);
+            id = e.target.id;
+            document.getElementById(id).innerHTML = "";
+            document.getElementById(id).appendChild(img);  
+        }
+
+    </script>
 </body>
 
 </html>
