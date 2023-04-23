@@ -60,8 +60,8 @@ Array.from(document.getElementsByClassName("col-box")).forEach((box) => {
                     }
                     match = 0;
                 });
-                turn++;
             }
+            turn++;
         }
     });
 });
