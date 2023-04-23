@@ -40,7 +40,6 @@ Array.from(document.getElementsByClassName("col-box")).forEach((box) => {
                         }
                         if (match == 3) {
                             console.log("Player 2 won the game.");
-                            alert("Player 2 won the game.");
                         }
                     }
                     match = 0;
@@ -55,7 +54,6 @@ Array.from(document.getElementsByClassName("col-box")).forEach((box) => {
                         }
                         if (match == 3) {
                             console.log("Player 1 won the game.");
-                            alert("Player 1 won the game.");
                         }
                     }
                     match = 0;
