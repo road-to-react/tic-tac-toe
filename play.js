@@ -21,45 +21,47 @@ Array.from(document.getElementsByClassName("col-box")).forEach((box) => {
         var img = selectImage(turn);
         var position = box.id.slice(3)
 
-        if (turn % 2 == 0) {
-            pos2.push(position);
-            pos2.sort();
-            // bingo.forEach((order) => {
-            //     if (pos2.join("").match(order) != null) {
-            //         console.log("Payer 2 one the game.");
-            //     }
-            // });
-            bingo.forEach((pattern) => {
-                for (let i = 0; i < 3; i++) {
-                    if (pos2.join().match(pattern.toString().charAt(i))) {
-                        match++;
-                    }
-                    if (match == 3) {
-                        console.log("Player 2 won the game.");
-                    }
-                }
-                match = 0;
-            });
-        } else {
-            pos1.push(position);
-            pos1.sort();
-            bingo.forEach((pattern) => {
-                for (let i = 0; i < 3; i++) {
-                    if (pos1.join().match(pattern.toString().charAt(i))) {
-                        match++;
-                    }
-                    if (match == 3) {
-                        console.log("Player 1 won the game.");
-                    }
-                }
-                match = 0;
-            });
 
-        }
         const hasChild = box.hasChildNodes();
         if (!hasChild) {
             box.appendChild(img);
-            turn++;
+            if (turn % 2 == 0) {
+                pos2.push(position);
+                pos2.sort();
+                // bingo.forEach((order) => {
+                //     if (pos2.join("").match(order) != null) {
+                //         console.log("Payer 2 one the game.");
+                //     }
+                // });
+                bingo.forEach((pattern) => {
+                    for (let i = 0; i < 3; i++) {
+                        if (pos2.join().match(pattern.toString().charAt(i))) {
+                            match++;
+                        }
+                        if (match == 3) {
+                            console.log("Player 2 won the game.");
+                            alert("Player 2 won the game.");
+                        }
+                    }
+                    match = 0;
+                });
+            } else {
+                pos1.push(position);
+                pos1.sort();
+                bingo.forEach((pattern) => {
+                    for (let i = 0; i < 3; i++) {
+                        if (pos1.join().match(pattern.toString().charAt(i))) {
+                            match++;
+                        }
+                        if (match == 3) {
+                            console.log("Player 1 won the game.");
+                            alert("Player 1 won the game.");
+                        }
+                    }
+                    match = 0;
+                });
+                turn++;
+            }
         }
     });
 });
