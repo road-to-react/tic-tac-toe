@@ -2,7 +2,8 @@
 var turn = 1; //for selecting, player turn
 var pos1 = [];
 var pos2 = [];
-var match;
+var match = 0;
+var bingo = 0;
 var bingo = [["123"], ["369"], ["789"], ["147"], ["159"], ["357"], ["258"], ["456"]];
 
 function selectImage(turn) {
@@ -23,16 +24,11 @@ Array.from(document.getElementsByClassName("col-box")).forEach((box) => {
 
 
         const hasChild = box.hasChildNodes();
-        if (!hasChild) {
+        if (!hasChild && bingo != 1) {
             box.appendChild(img);
             if (turn % 2 == 0) {
                 pos2.push(position);
                 pos2.sort();
-                // bingo.forEach((order) => {
-                //     if (pos2.join("").match(order) != null) {
-                //         console.log("Payer 2 one the game.");
-                //     }
-                // });
                 bingo.forEach((pattern) => {
                     for (let i = 0; i < 3; i++) {
                         if (pos2.join().match(pattern.toString().charAt(i))) {
@@ -40,6 +36,7 @@ Array.from(document.getElementsByClassName("col-box")).forEach((box) => {
                         }
                         if (match == 3) {
                             console.log("Player 2 won the game.");
+                            bingo = 1;
                         }
                     }
                     match = 0;
@@ -54,6 +51,7 @@ Array.from(document.getElementsByClassName("col-box")).forEach((box) => {
                         }
                         if (match == 3) {
                             console.log("Player 1 won the game.");
+                            bingo = 1;
                         }
                     }
                     match = 0;

@@ -1,10 +1,19 @@
 .game {
   display: flex;
   justify-content: center;
-  padding: 50px;
+  align-items: center;
+  padding: 10px;
+  gap: 20px;
+}
+
+.player {
+  flex: 1;
+  border: 2px solid green;
+  height: 100px;
 }
 
 .board {
+  flex: 2;
   width: clamp(100px, 100%, 500px);
   aspect-ratio: 1;
   border: 5px dotted black;
@@ -39,4 +48,21 @@
 .symbol {
   object-fit: contain;
   width: 50%;
+}
+
+@media (max-width: 700px) {
+  .game {
+    flex-direction: column;
+    padding:0 50px;
+    height: 700px;
+  }
+
+  .board{
+    flex:1;
+  }
+
+  .player{
+    flex: 1;
+    width: 50%;
+  }
 }
