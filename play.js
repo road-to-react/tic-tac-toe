@@ -1,10 +1,12 @@
 
-var turn = 1; //for selecting, player turn
-var pos1 = [];
-var pos2 = [];
-var match = 0;
+var turn = 1;       //for selecting, player turn
+var pos1 = [];      //position of circle in col-box
+var pos2 = [];      //position of cross in col-box 
+var match = 0;      //check for match pattern for bingo
 var finish = 0;
+
 var bingo = [["123"], ["369"], ["789"], ["147"], ["159"], ["357"], ["258"], ["456"]];
+
 var playerSection1 = document.getElementById("player-1");
 var playerSection2 = document.getElementById("player-2");
 
@@ -21,7 +23,6 @@ function selectImage(turn) {
     }
     return img;
 }
-
 
 Array.from(document.getElementsByClassName("col-box")).forEach((box) => {
     box.addEventListener("click", function (e) {
@@ -40,12 +41,15 @@ Array.from(document.getElementsByClassName("col-box")).forEach((box) => {
                             match++;
                         }
                         if (match == 3) {
+                            // TODO:  find the bingo pattern
+
                             console.log("Player-2 won the game.");
                             playerSection1.innerHTML = "Player-1 LOSE [Circle]";
                             playerSection2.innerHTML = "Player-2 WON [Cross]";
                             playerSection1.style.color = "red";
                             playerSection2.style.color = "green";
                             finish = 1;
+                            console.log(pattern.toString());
                         }
                     }
                     match = 0;
@@ -65,6 +69,21 @@ Array.from(document.getElementsByClassName("col-box")).forEach((box) => {
                             playerSection1.style.color = "green";
                             playerSection2.style.color = "red";
                             finish = 1;
+                            
+                            const hr=document.getElementById("bingoLine");
+                            hr.style.display="flex";
+                            hr.className="";
+                            if(["123","456","789"].includes(pattern.toString())){
+                                hr.classList.add("hr");
+                                hr.style.top=Math.floor(pattern[0][0]/3)*30+15+2.5+"%";
+                            }else if(["147","258","369"].includes(pattern.toString())){
+                                hr.classList.add("vr");
+                                
+                                hr.style.left=((pattern[0][0]/3)-1)*30+15+2.5+"%";
+                            }else{
+                                hr.classList.add("dg");
+                            
+                            }
                         }
                     }
                     match = 0;
