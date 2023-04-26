@@ -1,4 +1,3 @@
-
 var turn = 1;       //for selecting, player turn
 var pos1 = [];      //position of circle in col-box
 var pos2 = [];      //position of cross in col-box 
