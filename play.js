@@ -27,7 +27,7 @@ function bingoLineDraw(pattern) {
     hr.className = "";
     if (["123", "456", "789"].includes(pattern.toString())) {
         hr.classList.add("hr");
-        hr.style.top = Math.floor(pattern[0][0] / 3) * 30 + 15 + 2.5 + "%";
+        hr.style.top = Math.floor(pattern[0][0] / 3) * 30 + 15 + 5 + "%";
     } else if (["147", "258", "369"].includes(pattern.toString())) {
         hr.classList.add("vr");
         if (pattern[0][0] == "1") {
@@ -39,7 +39,7 @@ function bingoLineDraw(pattern) {
         hr.classList.add("dg");
         if (pattern[0][0] == "3") {
             hr.style.transform = "rotate(-45deg)";
-        }e
+        }
     }
 }
 
@@ -49,7 +49,7 @@ Array.from(document.getElementsByClassName("col-box")).forEach((box) => {
         var position = box.id.slice(3);//get the id of the box as 1,2,3....
 
         const hasChild = box.hasChildNodes();
-        if (!hasChild && bingo != 1 && finish != 1) {
+        if (!hasChild && finish != 1) {
             box.appendChild(img);
             if (turn % 2 == 0) {
                 pos2.push(position);
@@ -83,10 +83,10 @@ Array.from(document.getElementsByClassName("col-box")).forEach((box) => {
                             console.log("Player 1 won the game.");
                             playerSection1.innerHTML = "Player-1 WON [Circle]";
                             playerSection2.innerHTML = "Player-2 LOSE [Cross]";
-                            bingoLineDraw(pattern); playerSection1.style.color = "green";
+                            playerSection1.style.color = "green";
                             playerSection2.style.color = "red";
                             finish = 1;
-
+                            bingoLineDraw(pattern);
                         }
                     }
                     match = 0;
@@ -111,6 +111,6 @@ document.getElementById("reset").onclick = function () {
         playerSection1.style.color = "black";
         playerSection2.style.color = "black";
         hr.classList = "";
-        hr.style.transform = "";
+        hr.style = "none";
     });
 }
