@@ -4,11 +4,10 @@ var pos1 = [];      //position of circle in col-box
 var pos2 = [];      //position of cross in col-box 
 var match = 0;      //check for match pattern for bingo
 var finish = 0;
-
 var bingo = [["123"], ["369"], ["789"], ["147"], ["159"], ["357"], ["258"], ["456"]];
-
 var playerSection1 = document.getElementById("player-1");
 var playerSection2 = document.getElementById("player-2");
+const hr = document.getElementById("bingoLine");    //bingo line at last
 
 playerSection1.innerHTML = "Player-1 [Circle]";
 playerSection2.innerHTML = "Player-2 [Cross]";
@@ -22,6 +21,26 @@ function selectImage(turn) {
         img.src = "images/circle.svg"; //player 1 
     }
     return img;
+}
+
+function bingoLineDraw(pattern) {
+    hr.className = "";
+    if (["123", "456", "789"].includes(pattern.toString())) {
+        hr.classList.add("hr");
+        hr.style.top = Math.floor(pattern[0][0] / 3) * 30 + 15 + 2.5 + "%";
+    } else if (["147", "258", "369"].includes(pattern.toString())) {
+        hr.classList.add("vr");
+        if (pattern[0][0] == "1") {
+            hr.style.left = "-25%";
+        } else if (pattern[0][0] == "3") {
+            hr.style.left = "35%";
+        }
+    } else {
+        hr.classList.add("dg");
+        if (pattern[0][0] == "3") {
+            hr.style.transform = "rotate(-45deg)";
+        }
+    }
 }
 
 Array.from(document.getElementsByClassName("col-box")).forEach((box) => {
@@ -41,15 +60,13 @@ Array.from(document.getElementsByClassName("col-box")).forEach((box) => {
                             match++;
                         }
                         if (match == 3) {
-                            // TODO:  find the bingo pattern
-
                             console.log("Player-2 won the game.");
                             playerSection1.innerHTML = "Player-1 LOSE [Circle]";
                             playerSection2.innerHTML = "Player-2 WON [Cross]";
                             playerSection1.style.color = "red";
                             playerSection2.style.color = "green";
                             finish = 1;
-                            console.log(pattern.toString());
+                            bingoLineDraw(pattern);
                         }
                     }
                     match = 0;
@@ -66,24 +83,10 @@ Array.from(document.getElementsByClassName("col-box")).forEach((box) => {
                             console.log("Player 1 won the game.");
                             playerSection1.innerHTML = "Player-1 WON [Circle]";
                             playerSection2.innerHTML = "Player-2 LOSE [Cross]";
-                            playerSection1.style.color = "green";
+                            bingoLineDraw(pattern); playerSection1.style.color = "green";
                             playerSection2.style.color = "red";
                             finish = 1;
-                            
-                            const hr=document.getElementById("bingoLine");
-                            hr.style.display="flex";
-                            hr.className="";
-                            if(["123","456","789"].includes(pattern.toString())){
-                                hr.classList.add("hr");
-                                hr.style.top=Math.floor(pattern[0][0]/3)*30+15+2.5+"%";
-                            }else if(["147","258","369"].includes(pattern.toString())){
-                                hr.classList.add("vr");
-                                
-                                hr.style.left=((pattern[0][0]/3)-1)*30+15+2.5+"%";
-                            }else{
-                                hr.classList.add("dg");
-                            
-                            }
+
                         }
                     }
                     match = 0;
@@ -107,5 +110,7 @@ document.getElementById("reset").onclick = function () {
         playerSection2.innerHTML = "Player-2 [Cross]";
         playerSection1.style.color = "black";
         playerSection2.style.color = "black";
+        hr.classList = "";
+        hr.style.transform = "";
     });
 }
