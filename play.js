@@ -39,7 +39,7 @@ function bingoLineDraw(pattern) {
         hr.classList.add("dg");
         if (pattern[0][0] == "3") {
             hr.style.transform = "rotate(-45deg)";
-        }
+        }e
     }
 }
 
