@@ -22,12 +22,14 @@ function selectImage(turn) {
     return img;
 }
 
+//locate the bingo line position
 function bingoLineDraw(pattern) {
-    hr.className = "";
+    hr.className = "none";
     if (["123", "456", "789"].includes(pattern.toString())) {
         hr.classList.add("hr");
         hr.style.top = Math.floor(pattern[0][0] / 3) * 30 + 15 + 5 + "%";
     } else if (["147", "258", "369"].includes(pattern.toString())) {
+        hr.style="none";    // for double side bingo case //clearing other styles 
         hr.classList.add("vr");
         if (pattern[0][0] == "1") {
             hr.style.left = "-25%";
@@ -35,6 +37,7 @@ function bingoLineDraw(pattern) {
             hr.style.left = "35%";
         }
     } else {
+        hr.style="none";    // for double side bingo case
         hr.classList.add("dg");
         if (pattern[0][0] == "3") {
             hr.style.transform = "rotate(-45deg)";
