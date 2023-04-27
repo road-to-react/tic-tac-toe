@@ -76,9 +76,9 @@
 
 .dg {
   top: 50%;
-  left: -20%;
+  left: -10%;
   transform: rotate(45deg);
-  width: 140%;
+  width: 120%;
   /* transform: translateX(-50%) rotate(45deg); */
 }
 

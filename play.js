@@ -92,6 +92,12 @@ Array.from(document.getElementsByClassName("col-box")).forEach((box) => {
                 });
             }
             turn++;
+            if (turn == 10 && finish != 1) {
+                playerSection1.innerHTML = "It's a Tie";
+                playerSection2.innerHTML = "It's a Tie";
+                playerSection1.style.color = "orange";
+                playerSection2.style.color = "orange";
+            }
         }
     });
 });
